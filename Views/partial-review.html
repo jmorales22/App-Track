@@ -1,0 +1,17 @@
+${data.map(entry => `<p>${entry.band}</p>`).join("")}
+
+<h2>REVIEWS</h2>
+<hr/>
+
+${reviewList.map(entry => `<p>${entry.review}</p>`).join("")}
+
+<form action='/' method='POST'>
+    <input type='hidden' name='album_id' value=${data[0].id}>
+    <label> Title
+        <input type='text' name='review_title' placeholder='Review Title'/>
+    </label>
+    <label>My Review
+        <textarea name='review_text' placeholder='My review of this album...'></textarea>
+    </label>
+    <button type='submit'>Save Review</button>
+</form>
