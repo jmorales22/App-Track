@@ -1,17 +1,13 @@
-${data.map(entry => `<p>${entry.band}</p>`).join("")}
-
-<h2>REVIEWS</h2>
-<hr/>
-
-${reviewList.map(entry => `<p>${entry.review}</p>`).join("")}
-
-<form action='/' method='POST'>
-    <input type='hidden' name='album_id' value=${data[0].id}>
-    <label> Title
-        <input type='text' name='review_title' placeholder='Review Title'/>
+<form action='/review' method='POST'>
+    <label> Rate the Interview
+        <input type='text' name='interview_rating' placeholder='Rate the Interview'/>
     </label>
-    <label>My Review
-        <textarea name='review_text' placeholder='My review of this album...'></textarea>
+    <label>Whiteboarding
+        <input type='text' name='whiteboarding_rating' placeholder='Rate the Whiteboard'/>
     </label>
+    <label>Did you get a job?
+        <input type='text' name='job_offer' placeholder='Job?'/>
+    </label>
+    <textarea name='comments' placeholder='Leave comments here....'></textarea>
     <button type='submit'>Save Review</button>
 </form>
