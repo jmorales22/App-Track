@@ -2,6 +2,7 @@ const express = require('express'),
 router = express.Router(),
 mainModel = require('../Models/mainModel');
 companyModel = require('../Models/companyModel');
+reviewsModel = require('../Models/reviewsModel');
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
@@ -22,12 +23,12 @@ res.render('template', {
 /* GET company page */
 router.get('/:entry_id?', async (req, res, next) => {
   const entryId = req.params.entry_id;
-  const data = await companyModel.getCompanyReviews(entryId);
+  const review_data = await reviewsModel.getCompanyReviews(entryId);
 
   res.render('template', {
     locals: {
-      title: 'Title',
-      data: data,
+      title: review_data[0].name + ' Overview',
+      data: review_data
   },
   
     partials: {

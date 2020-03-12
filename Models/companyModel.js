@@ -7,7 +7,7 @@ class CompanyModel {
         this.location = location;
     }
 
-    static async getCompanyReviews(value){
+    static async getCompanyInfo(value){
         try {
             const response = await db.any(`SELECT * FROM test_companies WHERE id=${value};`);
             console.log(value);

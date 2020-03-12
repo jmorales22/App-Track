@@ -1,3 +1,14 @@
 ${data.map(entry => `<p>${entry.name}</p>`).join("")}
-<br>
 ${data.map(entry => `<p>${entry.location}</p>`).join("")}
+<br>
+<p>Interview Rating: </p>
+${data.map(entry => `<p>${entry.interview_rating}</p>`).join("")}
+<br>
+<p>Whiteboarding Rating: </p>
+${data.map(entry => `<p>${entry.whiteboarding_rating}</p>`).join("")}
+<br>
+<p>Offer Extended: </p>
+${data.map(entry => `<p>${entry.job_offer}</p>`).join("")}
+<br>
+<p>Comments: </p>
+${data.map(entry => `<p>${entry.comments}</p>`).join("")}
