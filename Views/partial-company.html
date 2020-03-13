@@ -1,14 +1,24 @@
-${data.map(entry => `<p>${entry.name}</p>`).join("")}
-${data.map(entry => `<p>${entry.location}</p>`).join("")}
-<br>
-<p>Interview Rating: </p>
-${data.map(entry => `<p>${entry.interview_rating}</p>`).join("")}
-<br>
-<p>Whiteboarding Rating: </p>
-${data.map(entry => `<p>${entry.whiteboarding_rating}</p>`).join("")}
-<br>
-<p>Offer Extended: </p>
-${data.map(entry => `<p>${entry.job_offer}</p>`).join("")}
-<br>
-<p>Comments: </p>
-${data.map(entry => `<p>${entry.comments}</p>`).join("")}
+<section class="section">
+    <br>
+    <div class="container">
+      <h1 class="title has-text-centered has-text-weight-bold is-size-1">${data[0].name}</h1>
+      <h2 class="subtitle has-text-centered is-size-3">
+        ${data[0].location}
+      </h2>
+      <div class="is-size-3">
+        <section>
+            ${data.map(entry => `
+                <div><strong>From ${entry.first_name} ${entry.last_name}:</strong>
+                    <div class="columns">
+                        <div class="column">Interview Rating: ${entry.interview_rating}<br>
+                        Whiteboarding Rating: ${entry.whiteboarding_rating}<br>
+                        Offer Extended: ${entry.job_offer}</div>
+                        <div class="column">Comments:<br>
+                        ${entry.comments}</div>
+                    </div>
+                <br>
+            `).join("")}
+            </section>
+      </div>
+    </div>
+  </section>
