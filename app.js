@@ -7,11 +7,10 @@ const express = require('express'),
     es6Renderer = require('express-es6-template-engine');
 
 const indexRouter = require('./routes/index'),
-    signupRouter = require('./routes/users'),
-    reviewRouter = required('./routes/review'),
-    mainRouter = required('/routes/main');
-
-var app = express();
+    signupRouter = require('./routes/user'),
+    reviewRouter = require('./routes/review'),
+    mainRouter = require('./routes/main'),
+    app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
