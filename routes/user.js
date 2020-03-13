@@ -54,7 +54,8 @@ const hash = bcrypt.hashSync(password, salt);
 
 const user = new UserModel(null, first_name, last_name, email, hash);
 user.addUser();
-res.status(200).redirect('/');
+
+res.redirect('/');
 });
 
 router.get('/logout', function(req, res) {

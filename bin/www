@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('album-review:server');
+var debug = require('debug')('App-Track:server');
 var http = require('http');
 
 /**
