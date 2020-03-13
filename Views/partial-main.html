@@ -1,1 +1,8 @@
-${data.map(entry => `<a href='../main/${entry.id}'><p>${entry.name}</p></a>`).join("")}
+<section class="section">
+    <div class="container is-size-2">
+        <div class="column is-half has-text-dark">
+            <h3 class="has-text-weight-semibold">Company</h3>
+            ${data.map(entry => `<a href='../main/${entry.id}'><p>${entry.name} - ${entry.location}</p></a>`).join("")}
+        </div>
+    </div>
+</section>

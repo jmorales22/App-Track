@@ -27,7 +27,7 @@ router.get('/:entry_id?', async (req, res, next) => {
 
   res.render('template', {
     locals: {
-      title: review_data[0].name + ' Overview',
+      title: 'app.track',
       data: review_data
   },
   
