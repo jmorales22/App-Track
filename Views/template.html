@@ -1,13 +1,20 @@
 <html>
 
 <head>
-  <title>Album Reviews</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title>app.track</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
 </head>
 
 <body>
-  <h1>${title}</h1>
+  <nav class="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand is-size-4">
+      <a href="http://localhost:3000/main/" class="navbar-item">
+      app.track
+      <a href="http://localhost:3000/main/" class="navbar-item">
+      Log Out
+      </a>
+    </div>
+  </nav>
   ${partial}
 </body>
-
 </html>

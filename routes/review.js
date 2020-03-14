@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 
     res.render('template', { 
     locals: {
-        title: 'App Track', 
+        title: 'app.track', 
     },
 
     partials: {
