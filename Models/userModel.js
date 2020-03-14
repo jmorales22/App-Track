@@ -15,34 +15,40 @@ class userModel {
         return bcrypt.compareSync(this.password, hashedPassword);
       }
 
-    async addUsers(){
+    async addUser() {
         try {
-        const response = await db.one(
+        const response = await db.one (
           `INSERT INTO test_users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4) RETURNING id;`,
           [this.first_name, this.last_name, this.email, this.password]
         );
+  
         return response;
       } catch (error) {
         console.error('ERROR: ', error);
         return error;
       }
     }
-    async loginUser() {
-        try {
-          const response = await db.one(
-            `SELECT id, first_name, last_name, password FROM users WHERE email = $1;`,
-            [this.email]
+
+  async loginUser() {
+      try {
+        const response = await db.one (
+          `SELECT id, first_name, last_name, password FROM test_users WHERE email = $1;`,
+          [this.email]
           );
-          if (!!isValid) {
-            const { id, first_name, last_name } = response;
-            return { isValid, user_id: id, first_name, last_name };
-          } else {
-            return { isValid };
-          }
-    } catch (error) {
-        console.error('ERROR: ', error);
+        
+          const isValid = this.checkPassword(response.password);
+
+        if (!!isValid) {
+          const { id, first_name, last_name } = response;
+          return { isValid, user_id: id, first_name, last_name };
+        } else {
+          return { isValid };
+        }
+      } catch (error) {
+        console.error('ERROR:', error);
         return error;
       }
     }
-  }
-    module.exports = userModel;
+}
+
+module.exports = userModel;
