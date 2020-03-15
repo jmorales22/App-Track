@@ -24,7 +24,6 @@ router.post('/', async function(req, res, next) {
     const userId = req.session.user_id;
     const responce = await db.any ('SELECT id FROM test_companies WHERE name = $1', [name]);
     const companyId = responce && responce[0] && responce[0].id;
-    console.log('jennifer companyId', companyId);
 
     if (companyId) {
         const review = new reviewModel(null, userId, companyId, interview_rating, whiteboarding_rating, job_offer, comments);
@@ -40,8 +39,6 @@ router.post('/', async function(req, res, next) {
         const addCompany = await company.addCompany();
         const responce = await db.any ('SELECT id FROM test_companies WHERE name = $1', [name]);
         const newCompanyId = responce && responce[0] && responce[0].id;
-
-        console.log('carlos newCompanId', newCompanyId);
 
         const review = new reviewModel(null, userId, newCompanyId, interview_rating, whiteboarding_rating, job_offer, comments);
         const addReview = await review.addReview();
