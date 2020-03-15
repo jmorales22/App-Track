@@ -1,6 +1,8 @@
 const express = require('express'),
     reviewModel = require('../Models/reviewModel'),
     companyModel = require('../Models/companyModel'),
+    db = require('../Models/conn'),
+    userModel = require('../Models/userModel'),
     router = express.Router();
 
 router.get('/', function(req, res, next) {
@@ -11,33 +13,47 @@ router.get('/', function(req, res, next) {
     },
 
     partials: {
-        partial: "partial-review"
+        partial: 'partial-review'
     }
     });
 });
 
 router.post('/', async function(req, res, next) {
-    const { name, location } = req.body;
+    const { name, location, interview_rating, whiteboarding_rating, job_offer, comments } = req.body;
     console.log(req.body);
-    // here, you should check to see if the company exisit first, if not, create new company or if true, use the id to complete the review.
-    const company = new companyModel(null, name, location);
-    const addCompany = await company.addCompany();
-    next();
-  })
+    const userId = req.session.user_id;
+    const responce = await db.any ('SELECT id FROM test_companies WHERE name = $1', [name]);
+    const companyId = responce && responce[0] && responce[0].id;
+    console.log('jennifer companyId', companyId);
 
-router.post('/', async function(req, res) {
-    const { interview_rating, whiteboarding_rating, job_offer, comments } = req.body;
+    if (companyId) {
+        const review = new reviewModel(null, userId, companyId, interview_rating, whiteboarding_rating, job_offer, comments);
+        const addReview = await review.addReview();
+        if (addReview){
+            res.status(200).redirect('/main');
+        }
+        else {
+            res.sendStatus(500);
+        }
+    } else {
+        const company = new companyModel(null, name, location);
+        const addCompany = await company.addCompany();
+        const responce = await db.any ('SELECT id FROM test_companies WHERE name = $1', [name]);
+        const newCompanyId = responce && responce[0] && responce[0].id;
 
-    // query the db and say `select id from companyModel where name = ${name}`
+        console.log('carlos newCompanId', newCompanyId);
 
-    const review = new reviewModel(null, null, null, interview_rating, whiteboarding_rating, job_offer, comments);
-    const addReview = await review.addReview();
-    if (addReview){
-        res.status(200).redirect("/");
+        const review = new reviewModel(null, userId, newCompanyId, interview_rating, whiteboarding_rating, job_offer, comments);
+        const addReview = await review.addReview();
+        if (addReview){
+            res.status(200).redirect('/main');
+        }
+        else {
+            res.sendStatus(500);
+        }
     }
-    else {
-        res.sendStatus(500);
-    }
-  })
+
+    next(); 
+  });
 
 module.exports = router;
