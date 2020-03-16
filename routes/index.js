@@ -4,11 +4,9 @@ router = express.Router();
 
 
 router.get('/', async function(req, res, next) {
-  const data = await userModel.getById();
   res.render('template', { 
     locals: {
       title: 'App Track',
-      data: data,
       is_logged_in: req.session.is_logged_in 
   },
 
