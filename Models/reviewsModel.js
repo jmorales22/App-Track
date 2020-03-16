@@ -18,6 +18,8 @@ class ReviewsModel {
                 FROM test_reviews 
                 INNER JOIN test_companies
                 ON test_reviews.company_id = test_companies.id
+                INNER JOIN test_users
+                ON test_reviews.user_id = test_users.id
                 WHERE test_companies.id=${value};`);
             console.log(value);
             return response;
