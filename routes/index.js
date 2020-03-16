@@ -32,10 +32,11 @@ router.post('/', async function(req, res, next) {
     req.session.first_name = loginResponse.first_name;
     req.session.last_name = loginResponse.last_name;
     req.session.save();
-    
+
     res.redirect('/review');
   } else {
-    res.sendStatus(403);
+    //res.sendStatus(401);
+    res.redirect('/users/signup');
   }
   });
 
