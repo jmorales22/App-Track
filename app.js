@@ -18,7 +18,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/public', express.static('public'));
 app.use(session({
-    store: new FileStore(),
     secret: 'get rad',
     resave: false,
     saveUninitialized: true,
@@ -31,7 +30,7 @@ app.set('views', './views');
 app.set('view engine', 'html');
 
 app.use('/', indexRouter);
-app.use('/users/', signupRouter);
+app.use('/users', signupRouter);
 app.use('/review', reviewRouter);
 app.use('/main', mainRouter);
 
