@@ -9,7 +9,6 @@ router.get('/', function(req, res, next) {
         res.render('template', { 
         locals: {
             title: 'app.track',
-            is_logged_in: req.session.is_logged_in  
         },
 
         partials: {
