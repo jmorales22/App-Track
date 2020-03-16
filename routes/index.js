@@ -1,46 +1,48 @@
 const express = require('express'),
-router = express.Router(),
-albumModel = require('../Models/albumModel');
+userModel = require('../Models/userModel'),
+router = express.Router();
 
-/* GET home page. */
+
 router.get('/', async function(req, res, next) {
-const data = await albumModel.getAllAlbums();
-
-res.render('template', { 
-  locals: {
-    title: 'App Track', 
-    data: data
-},
-
-  partials: {
-    partial: "partial-index"
-  }
- });
-});
-
-router.get('/:entry_id?', async (req, res, next) => {
-  const entryId = req.params.entry_id;
-  const data = await albumModel.getById(entryId);
-  const reviewList = await albumModel.getReviews(entryId);
-
+  const data = await userModel.getById();
   res.render('template', { 
     locals: {
-      title: data[0].name, 
+      title: 'App Track',
       data: data,
-      reviewList: reviewList
+      is_logged_in: req.session.is_logged_in 
   },
-  
+
     partials: {
-      partial: "partial-review"
+      partial: "partial-index"
     }
   });
 });
 
-router.post('/', async function(req, res) {
-  const { review_title, review_text, album_id } = req.body;
-  const postData = await albumModel.addReview(review_title, review_text, album_id);
-  res.sendStatus(200);
-})
+  
+router.post('/', async function(req, res, next) {
+  const { email, password } = req.body;
+  
+  const user = new userModel(null, null, null, email, password);
+  const loginResponse = await user.loginUser();
+  console.log('login response is', loginResponse);
+  
+  if (!!loginResponse.isValid) {
+    req.session.is_logged_in = loginResponse.isValid;
+    req.session.user_id = loginResponse.user_id;
+    req.session.first_name = loginResponse.first_name;
+    req.session.last_name = loginResponse.last_name;
+    req.session.save();
 
+    res.redirect('/review');
+  } else {
+    //res.sendStatus(401);
+    res.redirect('/users/signup');
+  }
+  });
+
+  router.get('/logout', function(req, res) {
+    req.session.destroy();
+    res.redirect('/');
+    });
 
 module.exports = router;

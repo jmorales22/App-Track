@@ -14,8 +14,8 @@ class ReviewModel {
     async addReview() {
         try{
             const response = await db.one (
-                `INSERT INTO test_reviews (interview_rating, whiteboarding_rating, job_offer, comments) VALUES ($1, $2, $3, $4) RETURNING id;`, 
-                [this.interview_rating, this.whiteboarding_rating, this.job_offer, this.comments]
+                `INSERT INTO test_reviews (user_id, company_id, interview_rating, whiteboarding_rating, job_offer, comments) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;`, 
+                [this.user_id, this.company_id, this.interview_rating, this.whiteboarding_rating, this.job_offer, this.comments]
                 );
                 return response;
         } catch (error) {
