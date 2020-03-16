@@ -2,25 +2,27 @@ const express = require('express'),
     reviewModel = require('../Models/reviewModel'),
     companyModel = require('../Models/companyModel'),
     db = require('../Models/conn'),
-    userModel = require('../Models/userModel'),
     router = express.Router();
 
 router.get('/', function(req, res, next) {
+    if (req.session.is_logged_in == true) {
+        res.render('template', { 
+        locals: {
+            title: 'app.track',
+            is_logged_in: req.session.is_logged_in  
+        },
 
-    res.render('template', { 
-    locals: {
-        title: 'app.track',
-        is_logged_in: req.session.is_logged_in  
-    },
-
-    partials: {
-        partial: 'partial-review'
+        partials: {
+            partial: 'partial-review'
+        }
+        });
+    } else {
+        res.redirect('/users/signup');
     }
-    });
 });
 
 router.post('/', async function(req, res, next) {
-    if (is_logged_in = req.session.is_logged_in) {
+    if (req.session.is_logged_in == true) {
         const { name, location, interview_rating, whiteboarding_rating, job_offer, comments } = req.body;
         console.log(req.body);
         const userId = req.session.user_id;
