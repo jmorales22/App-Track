@@ -11,7 +11,12 @@
                 <div><strong>From ${entry.first_name} ${entry.last_name}:</strong>
                     <div class="columns">
                         <div class="column">Interview Rating: ${entry.interview_rating}<br>
-                        Whiteboarding Rating: ${entry.whiteboarding_rating}<br>
+                        ${!!(entry.interview_rating === "No Interview") ?
+                        ""
+                        :
+                        "Whiteboarding Rating: "+ entry.whiteboarding_rating
+                        }
+                        <br>
                         Offer Extended: ${entry.job_offer}</div>
                         <div class="column">Comments:<br>
                         ${entry.comments}</div>
