@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/public', express.static('public'));
 app.use(session({
-    secret: 'get rad',
+    secret: 'team',
     resave: false,
     saveUninitialized: true,
     is_logged_in: false

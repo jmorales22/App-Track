@@ -27,18 +27,7 @@ class userModel {
         return error;
       }
     }
-    static async getById(entry){
-      try {
-        console.log('Jennifer, entry: ', entry);
-          const response = await db.any('SELECT * FROM test_users WHERE id = $1;', [entry]);
-          console.log('Jennifer, response', response);
-          return response;
-      } catch(error) {
-          console.error('ERROR: ', error);
-          return error;
-      }
-  }
-
+  
   async loginUser() {
       try {
         const response = await db.one (

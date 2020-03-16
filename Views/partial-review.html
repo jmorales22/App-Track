@@ -2,23 +2,68 @@
 <br>
 <br>
 
-<form action='/review' method='POST'>
+<form action="/review" method="POST">
     <label> Company Name
-        <input type='text' name='name' placeholder='Company Name'/>
+        <input type="text" name="name" placeholder="Company Name"/>
     </label>
+    <br>
+    <br>
     <label> Company Location
-        <input type='text' name='location' placeholder='City'/>
+        <input type="text" name="location" placeholder="City"/>
     </label>
-    <label> Rate the Interview
-        <input type='text' name='interview_rating' placeholder='Rate the Interview'/>
-    </label>
-    <label>Whiteboarding
-        <input type='text' name='whiteboarding_rating' placeholder='Rate the Whiteboard'/>
-    </label>
-    <label>Did you get a job?
-        <input type='text' name='job_offer' placeholder='Job?'/>
-    </label>
+    <br>
+    <br>
+    <div class="control">
+        <label class="radio">Rate the Interview:
+          <input type="radio" name="interview_rating" value="Hard">
+          Hard
+        </label>
+        <label class="radio">
+          <input type="radio" name="interview_rating" value="Moderate">
+          Moderate
+        </label>
+        <label class="radio">
+          <input type="radio" name="interview_rating" value="Easy">
+          Easy
+        </label>
+        <label class="radio">
+          <input type="radio" name="interview_rating" value="No Interview">
+          No Interview
+        </label>
+      </div>
+      <br>
+      <div class="control">
+        <label class="radio">Whiteboarding Rating:
+            <input type="radio" name="whiteboarding_rating" value="Hard">
+            Hard
+          </label>
+          <label class="radio">
+            <input type="radio" name="whiteboarding_rating" value="Moderate">
+            Moderate
+          </label>
+          <label class="radio">
+            <input type="radio" name="whiteboarding_rating" value="Easy">
+            Easy
+          </label>
+          <label class="radio">
+            <input type="radio" name="whiteboarding_rating" value="No Whiteboarding">
+            No whiteboarding
+          </label>
+      </div>
+      <br>
+    <div class="control">
+        <label class="radio">Did you get the job?
+          <input type="radio" name="job_offer" value="Yes">
+          Yes
+        </label>
+        <label class="radio">
+          <input type="radio" name="job_offer" value="No">
+          No
+        </label>
+      </div>
+      <br>
     <textarea name='comments' placeholder='Leave comments here....'></textarea>
-    <button type='submit'>Save Review</button>
-   
+    <br>
+    <br>
+    <button type='submit'>Save Review</button>   
 </form>

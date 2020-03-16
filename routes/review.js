@@ -26,8 +26,8 @@ router.post('/', async function(req, res, next) {
         const { name, location, interview_rating, whiteboarding_rating, job_offer, comments } = req.body;
         console.log(req.body);
         const userId = req.session.user_id;
-        const responce = await db.any ('SELECT id FROM test_companies WHERE name = $1', [name]);
-        const companyId = responce && responce[0] && responce[0].id;
+        const response = await db.any ('SELECT id FROM test_companies WHERE name = $1', [name]);
+        const companyId = response && response[0] && response[0].id;
 
         if (companyId) {
             const review = new reviewModel(null, userId, companyId, interview_rating, whiteboarding_rating, job_offer, comments);
