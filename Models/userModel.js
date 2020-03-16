@@ -1,7 +1,6 @@
 const db = require('./conn'),
 bcrypt = require('bcryptjs');
 
-
 class userModel {
     constructor(id, first_name, last_name, email, password) {
         this.id = id;
@@ -28,14 +27,25 @@ class userModel {
         return error;
       }
     }
+    static async getById(entry){
+      try {
+        console.log('Jennifer, entry: ', entry);
+          const response = await db.any('SELECT * FROM test_users WHERE id = $1;', [entry]);
+          console.log('Jennifer, response', response);
+          return response;
+      } catch(error) {
+          console.error('ERROR: ', error);
+          return error;
+      }
+  }
 
   async loginUser() {
       try {
         const response = await db.one (
-          `SELECT id, first_name, last_name, password FROM users WHERE email = $1;`,
+          `SELECT id, first_name, last_name, password FROM test_users WHERE email = $1;`,
           [this.email]
           );
-        
+
           const isValid = this.checkPassword(response.password);
 
         if (!!isValid) {

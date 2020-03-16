@@ -17,6 +17,18 @@ class CompanyModel {
             return error;
         }
     }
-}
+
+    async addCompany() {
+        try{
+            const response = await db.one (
+                `INSERT INTO test_companies (name, location) VALUES ($1, $2) RETURNING id;`, 
+                [this.name, this.location]
+                );
+                return response;
+        } catch (error) {
+            console.log('ERROR ', error);
+        }
+     }
+    }
 
 module.exports = CompanyModel;
