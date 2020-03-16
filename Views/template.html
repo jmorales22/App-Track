@@ -10,8 +10,12 @@
     <div class="navbar-brand is-size-4">
       <a href="http://localhost:3000/main" class="navbar-item">
       app.track</a>
+      ${!!is_logged_in ? `
       <a href="http://localhost:3000/logout" class="navbar-item">
       Log Out
+      ` : `<a href="http://localhost:3000/" class="navbar-item">
+        Log In`
+      }
       </a>
       <a href="http://localhost:3000/users/signup" class="navbar-item">
         Sign-Up

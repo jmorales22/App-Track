@@ -12,7 +12,8 @@ router.get('/', async function(req, res, next) {
     res.render('template', { 
       locals: {
         title: 'App Track', 
-        data: data
+        data: data,
+        is_logged_in: req.session.is_logged_in
     },
 
       partials: {
@@ -34,6 +35,7 @@ router.get('/:entry_id?', async (req, res, next) => {
       locals: {
         title: 'app.track',
         data: review_data,
+        is_logged_in: req.session.is_logged_in
     },
     
       partials: {
