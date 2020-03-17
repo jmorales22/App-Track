@@ -1,15 +1,64 @@
-<br>
-<br>
-<br>
+<style>
+  body {
+    background-image: url(public/images/laptop.jpg);
+    background-size: cover;
+  }
+  h1{
+    font-weight: 900;
+  }
+  .review {
+    display: flex;
+    margin: 0px auto;
+    width: auto;
+    height: auto;
+    border: white;
+    border: solid;
+    background: white;
+    position: fixed;
+    right: 100px;
+    padding: 10px;
+    box-sizing: border-box;
+  }
 
+.box {
+  display: flex;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+  }
+
+@media screen and (max-width : 480px) {
+  .box {
+      display: flex;
+      width: 100%;
+      height: 50vw;
+      border: white;
+      border: solid;
+      background: white;
+      padding: 10px;
+  }
+}
+
+
+</style>
+
+<br>
+<br>
+<br>
+<div class="review">
 <form action="/review" method="POST">
+  <h1>Write a Review About Your Interview!</h1>
+  <br>
     <label> Company Name
-        <input type="text" name="name" placeholder="Company Name"/>
+        <input class="box" type="text" name="name" placeholder="Company Name"/>
     </label>
     <br>
     <br>
     <label> Company Location
-        <input type="text" name="location" placeholder="City"/>
+        <input class="box" type="text" name="location" placeholder="City"/>
     </label>
     <br>
     <br>
@@ -62,8 +111,10 @@
         </label>
       </div>
       <br>
-    <textarea name='comments' placeholder='Leave comments here....'></textarea>
+    <textarea classs="box" name='comments' rows="4" cols="50" placeholder='Leave comments here....'></textarea>
     <br>
     <br>
-    <button type='submit'>Save Review</button>   
+    <button type='submit'>Save Review</button> 
+  </div>
 </form>
+
