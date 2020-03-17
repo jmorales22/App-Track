@@ -1,6 +1,18 @@
+<style>
+    h3 {
+        color: #055BE6;
+        text-align: center;
+        font-size: 42px;
+    }
+    p {
+        color: #055BE6;
+        text-align: center;
+        font-size: 30px;
+    }
+</style>
+
 <section class="section">
-    <div class="container is-size-2">
-        <div class="column is-half has-text-dark">
+    <div class="column">
             <h3 class="has-text-weight-semibold">Company</h3>
             ${data.map(entry => `<a href='../main/${entry.id}'><p>${entry.name} - ${entry.location}</p></a>`).join("")}
         </div>
